@@ -26,3 +26,5 @@ esac
 
 dailywage=$(( $wagePerHr*$workingHrs ))
 echo "Daily wage $dailywage"
+monthlyWage=$(( $dailywage*20 ))
+echo "Monthly wage $monthlyWage"
