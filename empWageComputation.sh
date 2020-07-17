@@ -8,5 +8,6 @@ else
 fi
 wagePerHr=20
 fulldayHour=8
+partTimeHour=4
 dailywage=$(( $wagePerHr*$fulldayHour ))
 echo "Daily wage $dailywage"
