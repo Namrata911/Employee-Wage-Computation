@@ -6,3 +6,7 @@ then
 else
 	echo "employee is present"
 fi
+wagePerHr=20
+fulldayHour=8
+dailywage=$(( $wagePerHr*$fulldayHour ))
+echo "Daily wage $dailywage"
