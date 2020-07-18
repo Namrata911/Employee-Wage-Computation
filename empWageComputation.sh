@@ -28,3 +28,19 @@ dailywage=$(( $wagePerHr*$workingHrs ))
 echo "Daily wage $dailywage"
 monthlyWage=$(( $dailywage*20 ))
 echo "Monthly wage $monthlyWage"
+
+hours=0
+day=1
+while [ $day -le 20 ] || [ $hours -le 100 ]
+do
+	attendance=$(( RANDOM%2 ))
+	if [ $attendance -eq 1 ]
+	then
+			hours=$(( $hours+$workingHrs ))
+	fi
+	day=$(( $day+1 ))
+done
+
+wageForMonth=$(( $hours*$wagePerHr ))
+echo "Wage till the condition of total working hours 100 is reached or 20 days are over"
+echo $wageForMonth
