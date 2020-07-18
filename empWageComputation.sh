@@ -43,22 +43,36 @@ done
 
 
 wageForMonth=$(( $hours*$wagePerHr ))
-echo "Wage till the condition of total working hours 100 is reached or 20 days are over"
-echo $wageForMonth
+echo "Wage till the condition of total working hours 100 is reached or 20 days are over is $wageForMonth"
+
 
 function workHrs(){
 local totalHours=0
 local workingDailyHrs=$1
-for day in {0..19}
+declare -A dailyAtten
+
+for day in {1..20}
 do
    attendance=$(( RANDOM%2 ))
+	dailyAtten["Day$day"]=$attendance
    if [ $attendance -eq 1 ]
    then
          totalHours=$(( $totalHours+$workingDailyHrs ))
    fi
 done
-echo $totalHours
+dailyAtten["total"]=$totalHours
+echo '('
+for key in ${!dailyAtten[@]}
+do
+	echo "['$key']='${dailyAtten[$key]}'"
+done
+echo ')'
 }
 
-totalWorkHrs=$(workHrs $workingHrs)
-echo "Total working hours for the month are $totalWorkHrs "
+declare -A dailyAttendance="$(workHrs $workingHrs)"
+echo "Total working hours for the month are" ${dailyAttendance[total]}
+
+for key in ${!dailyAttendance[@]}
+do
+	echo ${key} " : " ${dailyAttendance[$key]}
+done
