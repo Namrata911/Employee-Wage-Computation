@@ -41,6 +41,24 @@ do
 	day=$(( $day+1 ))
 done
 
+
 wageForMonth=$(( $hours*$wagePerHr ))
 echo "Wage till the condition of total working hours 100 is reached or 20 days are over"
 echo $wageForMonth
+
+function workHrs(){
+local totalHours=0
+local workingDailyHrs=$1
+for day in {0..19}
+do
+   attendance=$(( RANDOM%2 ))
+   if [ $attendance -eq 1 ]
+   then
+         totalHours=$(( $totalHours+$workingDailyHrs ))
+   fi
+done
+echo $totalHours
+}
+
+totalWorkHrs=$(workHrs $workingHrs)
+echo "Total working hours for the month are $totalWorkHrs "
